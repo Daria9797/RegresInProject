@@ -1,21 +1,20 @@
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 
 
-public class RegresTests {
+public class RegresTests extends TestBase {
 
     @Test
     void getUserTest() {
         given()
                 .log().uri()
                 .log().method()
-                .log().body();
-        when()
-                .get("https://reqres.in/api/users/2")
+                .log().body()
+                .when()
+                .get("/users/2")
                 .then()
                 .log().status()
                 .log().body()
@@ -30,9 +29,9 @@ public class RegresTests {
                 .log().method()
                 .log().body()
                 .body("{\"name\": \"morpheus\",\"job\": \"leader\"}")
-                .contentType(JSON);
-        when()
-                .post("https://reqres.in/api/users")
+                .contentType(JSON)
+                .when()
+                .post("/users")
                 .then()
                 .log().status()
                 .log().body()
@@ -49,9 +48,9 @@ public class RegresTests {
                 .log().method()
                 .log().body()
                 .body("{\"name\": \"morpheus\",\"job\": \"zion resident\"}")
-                .contentType(JSON);
-        when()
-                .put("https://reqres.in/api/users/2")
+                .contentType(JSON)
+                .when()
+                .put("/users/2")
                 .then()
                 .log().status()
                 .log().body()
@@ -66,9 +65,9 @@ public class RegresTests {
         given()
                 .log().uri()
                 .log().method()
-                .log().body();
-        when()
-                .delete("https://reqres.in/api/users/2")
+                .log().body()
+                .when()
+                .delete("/users/2")
                 .then()
                 .log().status()
                 .log().body()
@@ -82,9 +81,9 @@ public class RegresTests {
         given()
                 .log().uri()
                 .log().method()
-                .log().body();
-        when()
-                .get("https://reqres.in/api/unknown/23")
+                .log().body()
+                .when()
+                .get("/unknown/23")
                 .then()
                 .log().status()
                 .log().body()
